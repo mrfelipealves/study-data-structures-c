@@ -55,3 +55,35 @@ void showList(LIST thisList){
 	}else
 		printf("Empty list.\n");
 }
+
+//Sequential search with element sentinel
+int sequantialSearchWithSentinel(LIST thisList, KEYTYPE keyToSearch){
+	int index = 0;
+	
+	thisList.vetorRecord[thisList.numberElements].key = keyToSearch;
+
+	while(thisList.vetorRecord[index].key < keyToSearch)
+		index++;
+
+	if((index > (thisList.numberElements-1))||(thisList.vetorRecord[index].key != keyToSearch))
+		return (-1);
+
+	else
+		return index;
+}
+
+//Delete an element
+bool deleteElement(LIST * pointerList, KEYTYPE keyToDelete){
+	int positionElement, j;
+	
+	positionElement = sequantialSearchWithSentinel(*pointerList, keyToDelete);
+
+	if(positionElement == -1)
+		return (false); //Element not found
+	else{
+		for(j = positionElement; j < pointerList->numberElements-1; j++)
+			pointerList->vetorRecord[j] = pointerList->vetorRecord[j+1];
+		pointerList->numberElements--;
+		return (true); //Element deleted
+	}
+}
