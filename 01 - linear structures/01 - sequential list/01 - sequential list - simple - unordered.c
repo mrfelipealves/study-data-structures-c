@@ -3,12 +3,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
+
 #define MAX 5 //Max range for the array
 
 typedef int KEYTYPE; //used as id for each element
 
-/*/////////	STRUCTURES DEFINITIONS	/////////*/
-///////////////////////////////////////////////
+/*//////////////////////////	STRUCTURES DEFINITIONS	/////////////////////*/
+///////////////////////////////////////////////////////////////////////////////
 
 typedef struct{
 	
@@ -23,8 +24,8 @@ typedef struct{
 	int numberElements;
 }LIST;
 
-/*//////////	FUNCTIONS	//////////*/
-////////////////////////////////////////
+/*////////////////////////////////	FUNCTIONS	//////////////////////////////*/
+////////////////////////////////////////////////////////////////////////////////
 
 //function to clear buffer after read a value from keyboard
 void cleanBuffer()
@@ -45,7 +46,7 @@ void showList(LIST thisList){
 
 	int i;
 	if(thisList.numberElements != 0){
-		printf("============== IMPRESSÃO DA LISTA ==============\n\n");
+		printf("============= IMPRESSÃO DA LISTA ============\n\n");
 		for(i = 0; i < thisList.numberElements; i++){
 			printf("Chave: %d\n", thisList.vetorRecord[i].key);
 			printf("Nome:  %s", thisList.vetorRecord[i].nome);
@@ -64,7 +65,7 @@ bool insertElement(LIST * pointerList, int i, KEYTYPE key){
 	if((pointerList->numberElements >= MAX) || (i < 0) || (i > (pointerList->numberElements)))
 		return (false); //full list or invalid index
 	
-	if((pointerList->numberElements > 0) && (i < pointerList->numberElements))
+	if((pointerList->numberElements > 0) && (i < pointerList->numberElements)) //realoc elements in list to receive new element
 		for(j = pointerList->numberElements; j > i; j--){
 			pointerList->vetorRecord[j] = pointerList->vetorRecord[j-1];
 		}
@@ -91,7 +92,7 @@ int sequentialSearch(LIST thisList, KEYTYPE keyToSearch){
 	return (-1); //Key not found
 }
 
-//Delete a element
+//Delete an element
 bool deleteElement(LIST * pointerList, KEYTYPE keyToDelete){
 	int positionElement, j;
 	positionElement = sequentialSearch(*pointerList, keyToDelete);
