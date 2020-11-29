@@ -84,27 +84,26 @@ int sequentialSearch(TYPELIST thisList, KEYTYPE keyToSearch){
 	return (-1); //key not found
 }
 
+//Binary search in sequential ordered list
+
 //Insertion of element in ordered list
 bool insertElementInOrderedList(TYPELIST * pointerList, KEYTYPE keyToInsert){
 
 	int index = 0;
 	int indexAux;
-	if(pointerList->numberElements >= MAX)
-		return (false);
 
-	printf("Test");
+	if(pointerList->numberElements >= MAX)
+		return (false); //list full
 
 	while((index < pointerList->numberElements)&&(pointerList->vetorRecord[index].key < keyToInsert))
 		index++;
+	//or index >= numberElements or key >= keytoSearch
 
-	if(pointerList->vetorRecord[index].key == keyToInsert)
+	if((pointerList->vetorRecord[index].key == keyToInsert)&&(index < pointerList->numberElements))
 		return (false); //key already exists
-	
-	if(index >= pointerList->numberElements){
 
-		for(indexAux = pointerList->numberElements; indexAux >=  index; indexAux++)
-			pointerList->vetorRecord[indexAux] = pointerList->vetorRecord[indexAux-1];
-	}
+	for(indexAux = pointerList->numberElements; indexAux > index; indexAux--)
+		pointerList->vetorRecord[indexAux] = pointerList->vetorRecord[indexAux-1];
 
 	pointerList->vetorRecord[index].key = keyToInsert;
 	printf("Type a name for record: ");
@@ -113,6 +112,7 @@ bool insertElementInOrderedList(TYPELIST * pointerList, KEYTYPE keyToInsert){
 	scanf("%d", &(pointerList->vetorRecord[index].idade));
 	cleanBuffer();
 	pointerList->numberElements++;
+
 }
 
 //Delete an element
@@ -150,6 +150,8 @@ void main(){
 
 	int resultIntFunction;
 	int indexToInsert;
+
+	int indexAux;
 
 	bool resultBoolunction;
 
@@ -239,6 +241,17 @@ void main(){
 				clearSequentialList(&thisList);
 				break;
 			}
+			case '9':{
+				printf("Number of elements: %d\n\n", thisList.numberElements);
+				printf("List: \n\n");
+				for(indexAux = 0; indexAux < MAX; indexAux++){
+					printf("Key: %d\n", thisList.vetorRecord[indexAux].key);
+					printf("Name: %s\n", thisList.vetorRecord[indexAux].nome);
+					printf("Age: %d\n\n", thisList.vetorRecord[indexAux].idade);
+				}
+
+				break;
+			}
 			case '0':{
 
 
@@ -253,4 +266,3 @@ void main(){
 
 
 }
-

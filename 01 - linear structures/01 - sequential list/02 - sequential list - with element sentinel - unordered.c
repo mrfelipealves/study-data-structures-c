@@ -1,15 +1,5 @@
 /*	A NON ORDERED SEQUENTIAL LIST	WITH SENTINEL ELEMENT*/
 
-/*Funções que serão implementadas
-- Inicializar estrutura
-- Retornar quantidade de elementos válidos
-- Exibir elementos da estrutura
-- Buscar por um elemento na estrutura
-- Inserir elementos na estrutura
-- Excluir elementos na estrutura
-- Reiniciar estrutura
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
