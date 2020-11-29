@@ -84,6 +84,8 @@ int sequentialSearch(TYPELIST thisList, KEYTYPE keyToSearch){
 	return (-1); //key not found
 }
 
+//Binary search in sequential ordered list
+
 //Insertion of element in ordered list
 bool insertElementInOrderedList(TYPELIST * pointerList, KEYTYPE keyToInsert){
 
