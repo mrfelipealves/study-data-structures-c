@@ -27,8 +27,7 @@ typedef struct{
 /*////////////////////////////////	FUNCTIONS	//////////////////////////////*/
 ////////////////////////////////////////////////////////////////////////////////
 
-void cleanBuffer()
-{
+void cleanBuffer(){
 	
 	while((getchar())!= '\n');
 }
@@ -63,7 +62,7 @@ void showList(LIST thisList){
 }
 
 //Sequential search with element sentinel
-int sequantialSearchWithSentinel(LIST thisList, KEYTYPE keyToSearch){
+int sequentialSearchWithSentinel(LIST thisList, KEYTYPE keyToSearch){
 	int index = 0;
 	
 	thisList.vetorRecord[thisList.numberElements].key = keyToSearch;
@@ -117,8 +116,7 @@ bool deleteElement(LIST * pointerList, KEYTYPE keyToDelete){
 }
 
 //clear list
-void clearSequentialList(LIST * pointerList)
-{
+void clearSequentialList(LIST * pointerList){
 	
 	pointerList->numberElements = 0;
 }
@@ -178,7 +176,7 @@ void main(){
 				scanf("%d", &keyToSearch);
 				cleanBuffer();
 
-				resultIntFunction = sequantialSearchWithSentinel(thisList, keyToSearch);
+				resultIntFunction = sequentialSearchWithSentinel(thisList, keyToSearch);
 
 				if(resultIntFunction > -1){
 					printf("Record found on: %d index\n", resultIntFunction);

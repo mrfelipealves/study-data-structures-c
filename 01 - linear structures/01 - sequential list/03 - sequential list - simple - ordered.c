@@ -1,15 +1,5 @@
 /*	A SIMPLE ORDERED SEQUENTIAL LIST */
 
-/*Funções que serão implementadas
-- Inicializar estrutura
-- Retornar quantidade de elementos válidos
-- Exibir elementos da estrutura
-- Buscar por um elemento na estrutura
-- Inserir elementos na estrutura
-- Excluir elementos na estrutura
-- Reiniciar estrutura
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -85,6 +75,27 @@ int sequentialSearch(TYPELIST thisList, KEYTYPE keyToSearch){
 }
 
 //Binary search in sequential ordered list
+int binarySearch(TYPELIST thisList, KEYTYPE keyToSearch){
+	int inferior, superior, meio;
+
+	inferior = 0;
+	superior = thisList.numberElements-1;
+
+	while(inferior <= superior){
+		meio = ((inferior+superior)/2);
+
+		if(thisList.vetorRecord[meio].key == keyToSearch)
+			return meio;
+		else
+			if(thisList.vetorRecord[meio].key < keyToSearch)
+				inferior = meio+1;
+			else
+				superior = meio-1;
+	}
+
+	return -1;
+
+}
 
 //Insertion of element in ordered list
 bool insertElementInOrderedList(TYPELIST * pointerList, KEYTYPE keyToInsert){
@@ -97,7 +108,7 @@ bool insertElementInOrderedList(TYPELIST * pointerList, KEYTYPE keyToInsert){
 
 	while((index < pointerList->numberElements)&&(pointerList->vetorRecord[index].key < keyToInsert))
 		index++;
-	//or index >= numberElements or key >= keytoSearch
+	
 
 	if((pointerList->vetorRecord[index].key == keyToInsert)&&(index < pointerList->numberElements))
 		return (false); //key already exists
@@ -112,6 +123,8 @@ bool insertElementInOrderedList(TYPELIST * pointerList, KEYTYPE keyToInsert){
 	scanf("%d", &(pointerList->vetorRecord[index].idade));
 	cleanBuffer();
 	pointerList->numberElements++;
+
+	return (true);
 
 }
 
@@ -197,9 +210,9 @@ void main(){
 				scanf("%d", &keyToSearch);
 				cleanBuffer();
 
-				resultIntFunction = sequentialSearch(thisList, keyToSearch);
+				resultIntFunction = binarySearch(thisList, keyToSearch);
 				if(resultIntFunction > -1){
-					printf("Record found on: %d index\n", resultIntFunction);
+					printf("Record found on %d index\n", resultIntFunction);
 					printf("Key: %d\n", thisList.vetorRecord[resultIntFunction].key);
 					printf("Nome: %s", thisList.vetorRecord[resultIntFunction].nome);
 					printf("Idade: %d anos \n", thisList.vetorRecord[resultIntFunction].idade);
