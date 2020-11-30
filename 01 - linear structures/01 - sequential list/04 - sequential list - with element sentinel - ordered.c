@@ -138,5 +138,96 @@ void clearSequentialList(TYPELIST * pointerList){
 }
 
 void main(){
-	
+
+	char menuOption;
+
+	TYPELIST thisList;
+
+	KEYTYPE keyToSearch;
+	KEYTYPE keyToInsert;
+	KEYTYPE keyToDelete;
+
+	int resultIntFunction;
+
+	bool resultBoolFunction;
+
+	do{
+
+		printf("\n=============================================\n");
+		printf("===================   MENU   ================\n");
+		printf("=============================================\n\n");
+		printf("1 - Start list\n");
+		printf("2 - List length\n");
+		printf("3 - Show list\n");
+		printf("4 - Search a key\n");
+		printf("5 - Insert an element\n");
+		printf("6 - Delete an element\n");
+		printf("7 - Clear list\n");
+		printf("choose an option: ");
+
+		scanf("%c", &menuOption);
+		printf("\n\n");
+		cleanBuffer();
+
+		switch(menuOption){
+			case '1':{
+				startSequentialList(&thisList);
+				printf("Initialization completed.\n");
+				break;
+			}
+			case '2':{
+
+				printf("List length: %d\n", listLength(thisList));
+				break;
+			}
+			case '3':{
+				showList(thisList);
+				break;
+			}
+			case '4':{
+
+				printf("Enter a key to search: ");
+				scanf("%d", &keyToSearch);
+				cleanBuffer();
+
+				resultIntFunction = sequentialSearchInOrderedList(thisList, keyToSearch);
+
+				if(resultIntFunction > -1){
+					printf("Record found on %d index\n", resultIntFunction);
+					printf("Key: %d", thisList.vetorRecord[resultIntFunction].key);
+					printf("Nome: %s", thisList.vetorRecord[resultIntFunction].nome);
+					printf("Idade: %d anos", thisList.vetorRecord[resultIntFunction].idade);
+				}else{
+					printf("Record not found.\n");
+				}
+				break;
+			}
+			case '5':{
+
+				printf("Enter a key of record to insert: ");
+				scanf("%d", &keyToInsert);
+				cleanBuffer();
+
+				resultBoolFunction = insertElementInOrderedList(&thisList, keyToInsert);
+
+				if(resultBoolFunction)
+					printf("Sucess on insertion.\n");
+				else
+					printf("Failed.\n");
+
+				break;
+			}
+			case '6':{
+
+				printf("Enter and element to delete: ");
+				scanf("%d", );
+			}
+			default:{
+				printf("Invalid option.\n");
+			}
+		}
+		printf("Type a key to continue...");
+		cleanBuffer();
+	}while(menuOption != '0');
+
 }

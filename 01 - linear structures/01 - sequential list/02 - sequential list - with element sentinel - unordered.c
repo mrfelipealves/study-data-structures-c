@@ -179,7 +179,7 @@ void main(){
 				resultIntFunction = sequentialSearchWithSentinel(thisList, keyToSearch);
 
 				if(resultIntFunction > -1){
-					printf("Record found on: %d index\n", resultIntFunction);
+					printf("Record found on %d index\n", resultIntFunction);
 					printf("Key: %d\n", thisList.vetorRecord[resultIntFunction].key);
 					printf("Nome: %s", thisList.vetorRecord[resultIntFunction].nome);
 					printf("Idade: %d anos \n", thisList.vetorRecord[resultIntFunction].idade);
